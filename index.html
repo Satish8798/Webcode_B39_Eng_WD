@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" 
+        crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles.css">
+    <title>Makeup API</title>
+
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <a class="navbar-brand" href="./index.html">Makeup API</a>
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productTypesList" role="button" >
+                            Product types
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#brandsList" role="button" >
+                            Brands
+                        </a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Product Type" aria-label="Search" id="productTypeValue">
+                <input class="form-control me-2" type="search" placeholder="Brand" aria-label="Search" id="brandValue">
+                <button class="btn btn-outline-success" id="search" type="submit" >Search</button>
+                </form>
+             </div>
+        </div>
+    </nav>
+
+
+    <!-- Top intro -->
+
+    <div class="opening text-center">
+        <h2>Welcome</h4>
+        <h4>to</h2>
+        <h1>Makeup API</h1>
+    </div>
+
+
+    <!-- Information division -->
+
+    <div class="information text-center">
+        <h3 style="font-weight: 100">Click on any Product/Brand below or Search using search on navigation</h3>
+        <p><span style="text-decoration:underlin">note:</span> Enter product and brand name in search, names can be seen below</p>
+    </div>
+
+
+    <!-- Search results and selected items display section -->
+
+    <section class="display">
+        <div class="container-fluid">
+            <div class="row" id="allResultsRow">
+
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <hr id="productTypesList">
+    <br>
+
+    <!-- List of product types and their links -->
+
+    <div class="container">
+        <fieldset>
+            <legend>Product types</legend>
+            <div class="row" id="productTypes">
+        
+            </div>
+        </fieldset>
+    </div>
+
+    <br>
+    <hr id="brandsList">
+    <br>
+
+    <!-- List of brands and their links -->
+
+    <div class="container">
+        <fieldset>
+            <legend>Brands</legend>
+            <div class="row" id="brands">
+        
+            </div>
+        </fieldset>
+    </div>
+
+    <!-- JavaScript Bundle with Popper Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" 
+        crossorigin="anonymous">
+    </script>
+
+    <!-- custom script file -->
+    <script src="./script.js"></script>
+
+</body>
+</html>

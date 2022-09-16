@@ -1,0 +1,37 @@
+.navbar{background-color: pink;}
+
+.navbar-brand{font-weight: bolder;}
+
+.dropdown-menu{
+    width:1000px;
+    height:100px;
+    overflow-y: scroll;
+}
+
+.dropdown-menu > li{display: inline-block;width:200px}
+
+
+img{
+    height:200px;
+    width:350px;
+}
+
+legend{
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ a{
+    text-decoration: none;
+    font-weight: 600;
+    color: grey;
+ }
+
+ #description{
+    height:150px;
+    overflow: auto;
+ }
+
+ .card{
+    box-shadow: 10px 10px 10px;
+ }
