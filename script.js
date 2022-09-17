@@ -10,12 +10,12 @@ openingDiv.innerHTML=`
 
 //adding html elements inside  information class div dynamically
 document.querySelector('.information').innerHTML=`
-<h3 style="font-weight: 100">Click on any Product/Brand below or Search using search on navigation</h3>
-<p><span style="text-decoration:underlin">note:</span> Enter product type and brand in search, use links in navigation for names</p>
-<div class="search-results">
-    <input class="form-control me-2" type="search" placeholder="Serach by name" aria-label="Search" id="nameValue">
-    <button class="btn btn-outline-success" id="searchResults" type="submit" >Search in results</button>
-</div>
+    <h3 style="font-weight: 100">Click on any Product/Brand below or Search using search on navigation</h3>
+    <p><span style="text-decoration:underlin">note:</span> Enter product type and brand in search, use links in navigation for names</p>
+    <div class="search-results">
+        <input class="form-control me-2" type="search" placeholder="Serach by name" aria-label="Search" id="nameValue">
+        <button class="btn btn-outline-success" id="searchResults" type="submit" >Search in results</button>
+    </div>
 `
 
 //displaying message till the product list and brands get loaded
@@ -40,20 +40,20 @@ async function getMakeupData(){
 async function displayProductTypesList(){
     try {
         let makeupData= await getMakeupData();
-    let tempProductTypes=[]
-    makeupData.forEach(data=>{
+        let tempProductTypes=[]
+        makeupData.forEach(data=>{
         tempProductTypes.push(data.product_type);
-    })
-    let productTypes=[]
-    productTypes=[...new Set(tempProductTypes)];
-    let productTypesList=document.getElementById("productTypes");
-    productTypesList.innerHTML="";
-    productTypes.forEach(productType=>{
-        //creating the list item dynamically
-        productTypesList.innerHTML +=`
-        <div class="col-sm-6 col-md-4 col-lg-3 p-2 "><a href="#productTypes" class="selected-product-type">${productType}</a></div>
+        })
+        let productTypes=[]
+        productTypes=[...new Set(tempProductTypes)];
+        let productTypesList=document.getElementById("productTypes");
+        productTypesList.innerHTML="";
+        productTypes.forEach(productType=>{
+            //creating the list item dynamically
+            productTypesList.innerHTML +=`
+            <div class="col-sm-6 col-md-4 col-lg-3 p-2 "><a href="#productTypes" class="selected-product-type">${productType}</a></div>
         `
-    })
+        })
     } catch (error) {
         console.log(error);
     }
@@ -63,20 +63,20 @@ async function displayProductTypesList(){
 async function displayBrandsList(){
     try {
         let makeupData= await getMakeupData();
-    let tempBrands=[]
-    makeupData.forEach(data=>{
+        let tempBrands=[]
+        makeupData.forEach(data=>{
         tempBrands.push(data.brand);
-    })
-    let brands=[]
-    brands=[...new Set(tempBrands)];
-    let brandsList=document.getElementById("brands");
-    brandsList.innerHTML="";
-    brands.forEach(brand=>{
-        //creating the list item dynamically
-        brandsList.innerHTML +=`
-        <div class="col-sm-6 col-md-4 col-lg-3 p-2"><a href="#brands" class="selected-brand">${brand}</a></div>
-        `
-    })
+        })
+        let brands=[]
+        brands=[...new Set(tempBrands)];
+        let brandsList=document.getElementById("brands");
+        brandsList.innerHTML="";
+        brands.forEach(brand=>{
+            //creating the list item dynamically
+            brandsList.innerHTML +=`
+            <div class="col-sm-6 col-md-4 col-lg-3 p-2"><a href="#brands" class="selected-brand">${brand}</a></div>
+            `
+        })
     } catch (error) {
         console.log(error);
     }
@@ -94,28 +94,27 @@ searchButton.addEventListener('click',(e)=>{
     fetch(`${url}?brand=${brandValue}&product_type=${productTypeValue}`)
     .then(response=> response.json())
     .then(data=>{
-       if(data.length===0){
-        allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
-       }else{
-        let searchResultsDiv= document.querySelector('.search-results');
-        searchResultsDiv.style.display="inline-block";
-        allResults.innerHTML=""
-        for(let i=0;i<data.length;i++){
-            allResults.innerHTML += display(data[i]);
-        }
-        //adding a event listner for button to search in results
-        document.getElementById("searchResults").addEventListener('click',(e)=>{
-            e.preventDefault();
-            let nameValue =document.getElementById('nameValue').value;
-            allResults.innerHTML="";
-            for(i=0;i<data.length;i++){
-                if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
-                    allResults.innerHTML+=display(data[i]);
-                }
+        if(data.length===0){
+            allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
+       } else {
+            let searchResultsDiv= document.querySelector('.search-results');
+            searchResultsDiv.style.display="inline-block";
+            allResults.innerHTML=""
+            for(let i=0;i<data.length;i++){
+                allResults.innerHTML += display(data[i]);
             }
-        })
+            //adding a event listner for button to search in results
+            document.getElementById("searchResults").addEventListener('click',(e)=>{
+                e.preventDefault();
+                let nameValue =document.getElementById('nameValue').value;
+                allResults.innerHTML="";
+                for(i=0;i<data.length;i++){
+                    if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                        allResults.innerHTML+=display(data[i]);
+                    }
+                }
+            })
        }
-
     }).catch(error=>{
         console.log(error)
     })
@@ -138,33 +137,32 @@ async function executeAll(){
             let allResults =  document.querySelector("#allResultsRow");
             allResults.innerHTML="Loading......";
             fetch(`${url}?product_type=${productType.innerText}`)
-    .then(response=> response.json())
-    .then(data=>{
-       if(data.length===0){
-        allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
-       }else{
-        let searchResultsDiv= document.querySelector('.search-results');
-        searchResultsDiv.style.display="inline-block";
-        allResults.innerHTML=""
-        for(let i=0;i<data.length;i++){
-            allResults.innerHTML += display(data[i]);
-            window.scrollTo(0,2);
-        }
+            .then(response=> response.json())
+            .then(data=>{
+                if(data.length===0){
+                    allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
+                } else {
+                    let searchResultsDiv= document.querySelector('.search-results');
+                    searchResultsDiv.style.display="inline-block";
+                    allResults.innerHTML=""
+                    for(let i=0;i<data.length;i++){
+                        allResults.innerHTML += display(data[i]);
+                        window.scrollTo(0,2);
+                    }
         //adding a event listner for button to search in results
-        document.getElementById("searchResults").addEventListener('click',()=>{
-            let nameValue =document.getElementById('nameValue').value;
-            allResults.innerHTML="";
-            for(i=0;i<data.length;i++){
-                if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
-                    allResults.innerHTML+=display(data[i]);
+                    document.getElementById("searchResults").addEventListener('click',()=>{
+                        let nameValue =document.getElementById('nameValue').value;
+                        allResults.innerHTML="";
+                        for(i=0;i<data.length;i++){
+                            if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                                allResults.innerHTML+=display(data[i]);
+                            }
+                        }
+                    })
                 }
-            }
-        })
-       }
-
-    }).catch(error=>{
-        console.log(error)
-    })
+            }).catch(error=>{
+                console.log(error)
+            })
         })       
     })
 
@@ -177,32 +175,32 @@ async function executeAll(){
             let allResults =  document.querySelector("#allResultsRow");
             allResults.innerHTML="Loading......";
             fetch(`${url}?brand=${brand.innerText}`)
-    .then(response=> response.json())
-    .then(data=>{
-       if(data.length===0){
-        allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
-       }else{
-       let searchResultsDiv= document.querySelector('.search-results');
-        searchResultsDiv.style.display="inline-block";
-        allResults.innerHTML=""
-        for(let i=0;i<data.length;i++){
-            allResults.innerHTML += display(data[i]);
-            window.scrollTo(0,2);
-        }
-        //adding a event listner for button to search in results
-        document.getElementById("searchResults").addEventListener('click',()=>{
-            let nameValue =document.getElementById('nameValue').value;
-            allResults.innerHTML="";
-            for(i=0;i<data.length;i++){
-                if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
-                    allResults.innerHTML+=display(data[i]);
+            .then(response=> response.json())
+            .then(data=>{
+                if(data.length===0){
+                    allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
+                }else{
+                    let searchResultsDiv= document.querySelector('.search-results');
+                    searchResultsDiv.style.display="inline-block";
+                    allResults.innerHTML=""
+                    for(let i=0;i<data.length;i++){
+                        allResults.innerHTML += display(data[i]);
+                        window.scrollTo(0,2);
+                    }
+                    //adding a event listner for button to search in results
+                    document.getElementById("searchResults").addEventListener('click',()=>{
+                        let nameValue =document.getElementById('nameValue').value;
+                        allResults.innerHTML="";
+                        for(i=0;i<data.length;i++){
+                            if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                                allResults.innerHTML+=display(data[i]);
+                            }
+                        }
+                    })
                 }
-            }
-        })
-       }
-    }).catch(error=>{
-        console.log(error)
-    })
+            }).catch(error=>{
+                console.log(error)
+            })
         })       
     })
 }
