@@ -107,6 +107,7 @@ searchButton.addEventListener('click',(e)=>{
             document.getElementById("searchResults").addEventListener('click',(e)=>{
                 e.preventDefault();
                 let nameValue =document.getElementById('nameValue').value;
+                document.getElementById('nameValue').value=""
                 allResults.innerHTML="";
                 for(i=0;i<data.length;i++){
                     if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
@@ -152,6 +153,7 @@ async function executeAll(){
         //adding a event listner for button to search in results
                     document.getElementById("searchResults").addEventListener('click',()=>{
                         let nameValue =document.getElementById('nameValue').value;
+                        document.getElementById('nameValue').value=""
                         allResults.innerHTML="";
                         for(i=0;i<data.length;i++){
                             if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
@@ -190,6 +192,7 @@ async function executeAll(){
                     //adding a event listner for button to search in results
                     document.getElementById("searchResults").addEventListener('click',()=>{
                         let nameValue =document.getElementById('nameValue').value;
+                        document.getElementById('nameValue').value=""
                         allResults.innerHTML="";
                         for(i=0;i<data.length;i++){
                             if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
