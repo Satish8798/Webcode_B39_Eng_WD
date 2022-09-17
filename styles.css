@@ -28,10 +28,12 @@ legend{
  }
 
  #description{
-    height:150px;
+    height:100px;
     overflow: auto;
  }
 
- .card{
-    box-shadow: 10px 10px 10px;
- }
+ .card:hover{box-shadow: 10px 10px 10px;}
+
+ #nameValue{width:250px;display:inline-block;}
+
+ .search-results{display:none}

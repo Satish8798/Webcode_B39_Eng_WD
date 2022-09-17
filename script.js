@@ -1,6 +1,16 @@
 const url="https://makeup-api.herokuapp.com/api/v1/products.json"; //api url
+
+let openingDiv=document.querySelector('.opening');
+openingDiv.innerHTML=`
+    <h2>Welcome</h4>
+    <h4>to</h2>
+    <h1>Makeup API</h1>
+`
+
 document.getElementById("productTypes").innerHTML="Please wait..."  
 document.getElementById("brands").innerHTML="Please wait..."
+
+executeAll();
 
 //function for getting the API data
 async function getMakeupData(){
@@ -15,7 +25,8 @@ async function getMakeupData(){
 
 //displays the list of product types retrieved from API
 async function displayProductTypesList(){
-    let makeupData= await getMakeupData();
+    try {
+        let makeupData= await getMakeupData();
     let tempProductTypes=[]
     makeupData.forEach(data=>{
         tempProductTypes.push(data.product_type);
@@ -30,11 +41,15 @@ async function displayProductTypesList(){
         <div class="col-sm-6 col-md-4 col-lg-3 p-2 "><a href="#productTypes" class="selected-product-type">${productType}</a></div>
         `
     })
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 //displays the list of brands retrieved from API
 async function displayBrandsList(){
-    let makeupData= await getMakeupData();
+    try {
+        let makeupData= await getMakeupData();
     let tempBrands=[]
     makeupData.forEach(data=>{
         tempBrands.push(data.brand);
@@ -49,19 +64,23 @@ async function displayBrandsList(){
         <div class="col-sm-6 col-md-4 col-lg-3 p-2"><a href="#brands" class="selected-brand">${brand}</a></div>
         `
     })
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 let searchButton = document.getElementById("search");
 
-//function to get data based on search
+//function to get data based on search using event listener
 searchButton.addEventListener('click',(e)=>{
     e.preventDefault();
+    let allResults =  document.querySelector("#allResultsRow");
+    allResults.innerHTML="Loading......";
     let brandValue= document.getElementById("brandValue").value.toLowerCase();
     let productTypeValue= document.getElementById("productTypeValue").value.toLowerCase();
     fetch(`${url}?brand=${brandValue}&product_type=${productTypeValue}`)
     .then(response=> response.json())
     .then(data=>{
-        let allResults =  document.querySelector("#allResultsRow");
        if(data.length===0){
         allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
        }else{
@@ -74,9 +93,9 @@ searchButton.addEventListener('click',(e)=>{
     }).catch(error=>{
         console.log(error)
     })
-    window.scrollTo(0,2);
     document.getElementById("brandValue").value=""
     document.getElementById("productTypeValue").value=""
+    window.scrollTo(0,2);
 })
 
 //function that executes initial functions for displaying lists and also having event listeners
@@ -90,10 +109,11 @@ async function executeAll(){
     selectedProductType.forEach(productType=>{
         productType.addEventListener('click',(e)=>{
             e.preventDefault();
+            let allResults =  document.querySelector("#allResultsRow");
+            allResults.innerHTML="Loading......";
             fetch(`${url}?product_type=${productType.innerText}`)
     .then(response=> response.json())
     .then(data=>{
-        let allResults =  document.querySelector("#allResultsRow");
        if(data.length===0){
         allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
        }else{
@@ -116,10 +136,11 @@ async function executeAll(){
     selectedBrand.forEach(brand=>{
         brand.addEventListener('click',(e)=>{
             e.preventDefault();
+            let allResults =  document.querySelector("#allResultsRow");
+            allResults.innerHTML="Loading......";
             fetch(`${url}?brand=${brand.innerText}`)
     .then(response=> response.json())
     .then(data=>{
-        let allResults =  document.querySelector("#allResultsRow");
        if(data.length===0){
         allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
        }else{
@@ -138,22 +159,24 @@ async function executeAll(){
 }
 
 
-executeAll();
-
 //default display function for displaying the cards based on search or selction from list
 function display(data){
     return `
     <div class="p-2 col-lg-3 col-sm-12 col-md-6">
-        <div class="card mx-auto" style="width: 18rem; background:linear-gradient(to bottom, grey, pink)">
+        <div class="card mx-auto" style="width: 18rem; height:33rem;">
             <img src="${data.image_link}" class="card-img-top" alt="${data.name}">
             <div class="card-body">
-                <h5 class="card-title bg-danger text-dark">Name: ${data.name}</h5>
+                <h5 class="card-title bg-danger text-light">Name: ${data.name}</h5>
                 <p class="card-text"><strong>Brand</strong>: ${data.brand}</p>
                 <p class="card-text"><strong>Price</strong>: ${data.price_sign} ${data.price}</p>
-                <p class="card-text" id="description"><strong>Description</strong>:<br>${data.description}</p>
+                <p class="card-text"><strong>Description</strong></p>
+                <div class="card-text" id="description"><br>${data.description}</div>
             </div>
         </div>
     </div>
     `
 }
 
+ function searchInResults(){
+
+ }

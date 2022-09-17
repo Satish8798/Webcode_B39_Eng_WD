@@ -22,11 +22,11 @@
     <!-- Navigation Bar -->
 
     <nav class="navbar navbar-expand-lg sticky-top">
-        <a class="navbar-brand" href="./index.html">Makeup API</a>
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
+            <a class="navbar-brand" href="./index.html">Makeup API</a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -53,9 +53,7 @@
     <!-- Top intro -->
 
     <div class="opening text-center">
-        <h2>Welcome</h4>
-        <h4>to</h2>
-        <h1>Makeup API</h1>
+        
     </div>
 
 
@@ -63,7 +61,11 @@
 
     <div class="information text-center">
         <h3 style="font-weight: 100">Click on any Product/Brand below or Search using search on navigation</h3>
-        <p><span style="text-decoration:underlin">note:</span> Enter product and brand name in search, names can be seen below</p>
+        <p><span style="text-decoration:underlin">note:</span> Enter product type and brand in search, names can be seen below</p>
+        <div class="search-results">
+            <input class="form-control me-2" type="search" placeholder="Brand" aria-label="Search" id="nameValue">
+            <button class="btn btn-outline-success" id="searchResults" type="submit" >Search</button>
+        </div>
     </div>
 
 
