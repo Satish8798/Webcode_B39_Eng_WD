@@ -210,14 +210,15 @@ async function executeAll(){
 function display(data){
     return `
     <div class="p-2 col-lg-3 col-sm-12 col-md-6">
-        <div class="card mx-auto" style="width: 18rem; height:33rem;">
+        <div class="card mx-auto" style="width: 18rem; height:35rem;">
             <img src="${data.image_link}" class="card-img-top" alt="${data.name}">
             <div class="card-body">
-                <h5 class="card-title bg-danger text-light">Name: ${data.name}</h5>
+                <h5 class="card-title text-danger">${data.name}</h5>
                 <p class="card-text"><strong>Brand</strong>: ${data.brand}</p>
                 <p class="card-text"><strong>Price</strong>: ${data.price_sign} ${data.price}</p>
                 <p class="card-text"><strong>Description</strong></p>
                 <div class="card-text" id="description"><br>${data.description}</div>
+                <a class="card=text text-danger" target="_blank" href="${data.product_link}">product link</a>
             </div>
         </div>
     </div>
