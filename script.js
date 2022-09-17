@@ -144,6 +144,7 @@ async function executeAll(){
        if(data.length===0){
         allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
        }else{
+        document.querySelector('.search-results').style.display="inline-block";
         allResults.innerHTML=""
         for(let i=0;i<data.length;i++){
             allResults.innerHTML += display(data[i]);
