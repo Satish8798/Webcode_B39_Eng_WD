@@ -7,6 +7,15 @@ openingDiv.innerHTML=`
     <h1>Makeup API</h1>
 `
 
+document.querySelector('.information').innerHTML=`
+<h3 style="font-weight: 100">Click on any Product/Brand below or Search using search on navigation</h3>
+<p><span style="text-decoration:underlin">note:</span> Enter product type and brand in search, use links in navigation for names</p>
+<div class="search-results sticky-top">
+    <input class="form-control me-2" type="search" placeholder="Serach by name" aria-label="Search" id="nameValue">
+    <button class="btn btn-outline-success" id="searchResults" type="submit" >Search in results</button>
+</div>
+`
+
 document.getElementById("productTypes").innerHTML="Please wait..."  
 document.getElementById("brands").innerHTML="Please wait..."
 
@@ -84,10 +93,20 @@ searchButton.addEventListener('click',(e)=>{
        if(data.length===0){
         allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
        }else{
+        let searchResultsDiv= document.querySelector('.search-results');
+        searchResultsDiv.style.display="inline-block";
         allResults.innerHTML=""
         for(let i=0;i<data.length;i++){
             allResults.innerHTML += display(data[i]);
         }
+        document.getElementById("searchResults").addEventListener('click',()=>{
+            let nameValue =document.getElementById('nameValue').value;
+            for(i=0;i<data.length;i++){
+                if(data[i].name===nameValue){
+                    allResults.innerHTML=display(data[i]);
+                }
+            }
+        })
        }
 
     }).catch(error=>{
@@ -117,11 +136,21 @@ async function executeAll(){
        if(data.length===0){
         allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
        }else{
+        let searchResultsDiv= document.querySelector('.search-results');
+        searchResultsDiv.style.display="inline-block";
         allResults.innerHTML=""
         for(let i=0;i<data.length;i++){
             allResults.innerHTML += display(data[i]);
             window.scrollTo(0,2);
         }
+        document.getElementById("searchResults").addEventListener('click',()=>{
+            let nameValue =document.getElementById('nameValue').value;
+            for(i=0;i<data.length;i++){
+                if(data[i].name===nameValue){
+                    allResults.innerHTML=display(data[i]);
+                }
+            }
+        })
        }
 
     }).catch(error=>{
@@ -144,14 +173,22 @@ async function executeAll(){
        if(data.length===0){
         allResults.innerHTML=`<h1 style="margin:auto">No data Found....</h1>`
        }else{
-        document.querySelector('.search-results').style.display="inline-block";
+       let searchResultsDiv= document.querySelector('.search-results');
+        searchResultsDiv.style.display="inline-block";
         allResults.innerHTML=""
         for(let i=0;i<data.length;i++){
             allResults.innerHTML += display(data[i]);
             window.scrollTo(0,2);
         }
+        document.getElementById("searchResults").addEventListener('click',()=>{
+            let nameValue =document.getElementById('nameValue').value;
+            for(i=0;i<data.length;i++){
+                if(data[i].name===nameValue){
+                    allResults.innerHTML=display(data[i]);
+                }
+            }
+        })
        }
-
     }).catch(error=>{
         console.log(error)
     })
@@ -177,7 +214,3 @@ function display(data){
     </div>
     `
 }
-
- function searchInResults(){
-
- }
