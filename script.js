@@ -1,5 +1,6 @@
 const url="https://makeup-api.herokuapp.com/api/v1/products.json"; //api url
 
+//adding html elements inside  opening class div dynamically
 let openingDiv=document.querySelector('.opening');
 openingDiv.innerHTML=`
     <h2>Welcome</h4>
@@ -7,18 +8,21 @@ openingDiv.innerHTML=`
     <h1>Makeup API</h1>
 `
 
+//adding html elements inside  information class div dynamically
 document.querySelector('.information').innerHTML=`
 <h3 style="font-weight: 100">Click on any Product/Brand below or Search using search on navigation</h3>
 <p><span style="text-decoration:underlin">note:</span> Enter product type and brand in search, use links in navigation for names</p>
-<div class="search-results sticky-top">
+<div class="search-results">
     <input class="form-control me-2" type="search" placeholder="Serach by name" aria-label="Search" id="nameValue">
     <button class="btn btn-outline-success" id="searchResults" type="submit" >Search in results</button>
 </div>
 `
 
+//displaying message till the product list and brands get loaded
 document.getElementById("productTypes").innerHTML="Please wait..."  
 document.getElementById("brands").innerHTML="Please wait..."
 
+//calling function to display initial UI
 executeAll();
 
 //function for getting the API data
@@ -99,11 +103,14 @@ searchButton.addEventListener('click',(e)=>{
         for(let i=0;i<data.length;i++){
             allResults.innerHTML += display(data[i]);
         }
-        document.getElementById("searchResults").addEventListener('click',()=>{
+        //adding a event listner for button to search in results
+        document.getElementById("searchResults").addEventListener('click',(e)=>{
+            e.preventDefault();
             let nameValue =document.getElementById('nameValue').value;
+            allResults.innerHTML="";
             for(i=0;i<data.length;i++){
-                if(data[i].name===nameValue){
-                    allResults.innerHTML=display(data[i]);
+                if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                    allResults.innerHTML+=display(data[i]);
                 }
             }
         })
@@ -143,11 +150,13 @@ async function executeAll(){
             allResults.innerHTML += display(data[i]);
             window.scrollTo(0,2);
         }
+        //adding a event listner for button to search in results
         document.getElementById("searchResults").addEventListener('click',()=>{
             let nameValue =document.getElementById('nameValue').value;
+            allResults.innerHTML="";
             for(i=0;i<data.length;i++){
-                if(data[i].name===nameValue){
-                    allResults.innerHTML=display(data[i]);
+                if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                    allResults.innerHTML+=display(data[i]);
                 }
             }
         })
@@ -180,11 +189,13 @@ async function executeAll(){
             allResults.innerHTML += display(data[i]);
             window.scrollTo(0,2);
         }
+        //adding a event listner for button to search in results
         document.getElementById("searchResults").addEventListener('click',()=>{
             let nameValue =document.getElementById('nameValue').value;
+            allResults.innerHTML="";
             for(i=0;i<data.length;i++){
-                if(data[i].name===nameValue){
-                    allResults.innerHTML=display(data[i]);
+                if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                    allResults.innerHTML+=display(data[i]);
                 }
             }
         })
