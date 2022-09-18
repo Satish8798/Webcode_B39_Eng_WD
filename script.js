@@ -10,8 +10,8 @@ openingDiv.innerHTML=`
 
 //adding html elements inside  information class div dynamically
 document.querySelector('.information').innerHTML=`
-    <h3 style="font-weight: 100">Search using search on navigation or Click on any Product type/Brand at end of page</h3>
-    <p><span style="text-decoration:underlin">note:</span>Enter product type and brand in search, use links in navigation for names</p>
+    <h3 style="font-weight: 100">Search using search on navigation or Click on any Product type/Brand in lists at the end of page</h3>
+    <p><span style="text-decoration:underlin">note:</span>Enter product type or brand or both in search, use links in navigation for proper names</p>
     <div class="search-results">
         <input class="form-control me-2" type="search" placeholder="Serach by name" aria-label="Search" id="nameValue">
         <button class="btn btn-outline-success" id="searchResults" type="submit" >Search in results</button>
@@ -109,7 +109,7 @@ searchButton.addEventListener('click',(e)=>{
                 let nameValue =document.getElementById('nameValue').value;
                 allResults.innerHTML="";
                 for(i=0;i<data.length;i++){
-                    if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                    if(data[i].name.trim().toLowerCase()===nameValue.trim().toLowerCase()){
                         allResults.innerHTML+=display(data[i]);
                     }
                 }
@@ -155,7 +155,7 @@ async function executeAll(){
                         let nameValue =document.getElementById('nameValue').value;
                         allResults.innerHTML="";
                         for(i=0;i<data.length;i++){
-                            if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                            if(data[i].name.trim().toLowerCase()===nameValue.trim().toLowerCase()){
                                 allResults.innerHTML+=display(data[i]);
                             }
                         }
@@ -193,7 +193,7 @@ async function executeAll(){
                         let nameValue =document.getElementById('nameValue').value;
                         allResults.innerHTML="";
                         for(i=0;i<data.length;i++){
-                            if(data[i].name.toLowerCase()===nameValue.toLowerCase()){
+                            if(data[i].name.trim().toLowerCase()===nameValue.trim().toLowerCase()){
                                 allResults.innerHTML+=display(data[i]);
                             }
                         }
