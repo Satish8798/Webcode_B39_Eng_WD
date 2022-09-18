@@ -10,8 +10,8 @@ openingDiv.innerHTML=`
 
 //adding html elements inside  information class div dynamically
 document.querySelector('.information').innerHTML=`
-    <h3 style="font-weight: 100">Click on any Product/Brand below or Search using search on navigation</h3>
-    <p><span style="text-decoration:underlin">note:</span> Enter product type and brand in search, use links in navigation for names</p>
+    <h3 style="font-weight: 100">Search using search on navigation or Click on any Product type/Brand at end of page</h3>
+    <p><span style="text-decoration:underlin">note:</span>Enter product type and brand in search, use links in navigation for names</p>
     <div class="search-results">
         <input class="form-control me-2" type="search" placeholder="Serach by name" aria-label="Search" id="nameValue">
         <button class="btn btn-outline-success" id="searchResults" type="submit" >Search in results</button>
@@ -125,6 +125,7 @@ searchButton.addEventListener('click',(e)=>{
 
 //function that executes initial functions for displaying lists and also having event listeners
 async function executeAll(){
+    await displayRandomProducts();
     await displayProductTypesList();
     await displayBrandsList();
 
@@ -223,4 +224,22 @@ function display(data){
         </div>
     </div>
     `
+}
+
+async function displayRandomProducts(){
+    try {
+        let makeupData= await getMakeupData();
+        let allResults =  document.querySelector("#allResultsRow");
+        console.log(makeupData);
+        let i=parseInt(Math.random()*900);
+        console.log(i);
+        allResults.innerHTML="<h5>Random Products</h5>"
+        for(let k=i;k<i+4;k++){
+            console.log(makeupData[i])
+            allResults.innerHTML += display(makeupData[k]);
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
 }
